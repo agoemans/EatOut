@@ -11,7 +11,7 @@
         </p>
         <p>
             <?php
-                require 'helper.php';
+                require 'src/helper.php';
                 $mySearchResult = getRestaurants();
 //                echo "This is the getrestaurants" . getRestaurants()."end of getrestaurants", '</br>';
 

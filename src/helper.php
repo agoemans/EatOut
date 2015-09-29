@@ -6,15 +6,16 @@
  * Time: 17:28
  */
 require '../vendor/autoload.php';
-require 'restaurantObj.php';
+require 'DiningLocation.php';
 use GuzzleHttp\Client;
 
-function getRestaurants(){
+function getRestaurants()
+{
     $client = new GuzzleHttp\Client(['base_uri' => 'https://api.eet.nu/venues?query=vegetarian&geolocation=52.3837955,4.9130078']);
     $response = $client->get('https://api.eet.nu/venues?query=vegetarian&geolocation=52.3837955,4.9130078');
     $code = $response->getBody();
     $restaurantArray = json_decode($code, true);
-    $countresult = count($restaurantArray['results']);
+  //  $countresult = count($restaurantArray['results']);
     $editedRestaurantList = createRestaurant($restaurantArray['results']);
 
 //    return $restaurantArray['results'][0]['name'];

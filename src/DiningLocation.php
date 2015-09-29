@@ -6,7 +6,6 @@
  * Time: 11:30
  */
 
-require '../vendor/autoload.php';
 
     class DiningLocation{
         public $placeid;
@@ -16,7 +15,8 @@ require '../vendor/autoload.php';
         public $streetname;
         public $geolocation;
 
-        public function __construct($result){
+        public function __construct($result)
+        {
 
                 $this->placeid = $result["id"];
                 $this->placename = $result["name"];
@@ -25,10 +25,11 @@ require '../vendor/autoload.php';
         }
     }
 
-    function createRestaurant($resultArray){
+    function createRestaurant($resultArray)
+    {
         $restaurantList = array();
 
-        for($i=0; $i < count($resultArray); ++$i) {
+        for ($i=0; $i < count($resultArray); ++$i) {
             $restaurant = new DiningLocation($resultArray[$i]);
 
             $restaurantList[] = $restaurant;
