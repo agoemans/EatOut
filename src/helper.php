@@ -6,7 +6,7 @@
  * Time: 17:28
  */
 require '../vendor/autoload.php';
-require 'DiningLocation.php';
+require 'CreateRestaurant.php';
 use GuzzleHttp\Client;
 
 function getRestaurants()

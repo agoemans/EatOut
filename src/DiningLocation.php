@@ -1,4 +1,6 @@
 <?php
+
+namespace EatOut\src;
 /**
  * Created by PhpStorm.
  * User: kwallen
@@ -25,16 +27,5 @@
         }
     }
 
-    function createRestaurant($resultArray)
-    {
-        $restaurantList = array();
 
-        for ($i=0; $i < count($resultArray); ++$i) {
-            $restaurant = new DiningLocation($resultArray[$i]);
-
-            $restaurantList[] = $restaurant;
-        }
-
-        return $restaurantList;
-    }
 ?>
