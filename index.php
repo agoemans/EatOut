@@ -11,11 +11,8 @@
         </p>
         <p>
             <?php
-                require 'src/helper.php';
-                $mySearchResult = getRestaurants();
-//                echo "This is the getrestaurants" . getRestaurants()."end of getrestaurants", '</br>';
-
-//                echo '<pre>'; print_r($mySearchResult); echo '</pre>';
+                require_once(__DIR__.'/src/helper.php');
+                $mySearchResult = Shrubbery\getRestaurants();
 //                var_dump($mySearchResult[0]);
 //                var_dump(get_object_vars($mySearchResult[0]));
                 foreach($mySearchResult as $key => $values) {
@@ -27,10 +24,6 @@
                     echo $values->zipcode;
                     echo '</br>';
                 }
-
-//                $output = "<script>console.log('This is the console log' . $mySearchResult  );</script>";
-
-
 
             ?>
         </p>

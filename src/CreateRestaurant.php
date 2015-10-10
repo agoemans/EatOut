@@ -1,20 +1,26 @@
 <?php
 
-require '../vendor/autoload.php';
+namespace Shrubbery;
 
-use EatOut\src\DiningLocation;
+require_once __DIR__ . '/../vendor/autoload.php';
 
-function createRestaurant($resultArray)
+use Shrubbery\DiningLocation;
+
+class CreateRestaurant
 {
-    $restaurantList = array();
 
-    for ($i=0; $i < count($resultArray); ++$i) {
-        $restaurant = new DiningLocation($resultArray[$i]);
+    public function GenerateList($resultArray)
+    {
+        $restaurantList = array();
 
-        $restaurantList[] = $restaurant;
+        for ($i=0; $i < count($resultArray); ++$i) {
+            $restaurant = new DiningLocation($resultArray[$i]);
+
+            $restaurantList[] = $restaurant;
+        }
+
+        return $restaurantList;
     }
 
-    return $restaurantList;
 }
-
 ?>

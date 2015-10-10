@@ -1,12 +1,6 @@
 <?php
 
-namespace EatOut\src;
-/**
- * Created by PhpStorm.
- * User: kwallen
- * Date: 20-9-15
- * Time: 11:30
- */
+namespace Shrubbery;
 
 
     class DiningLocation{
