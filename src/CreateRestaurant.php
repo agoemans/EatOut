@@ -2,19 +2,17 @@
 
 namespace Shrubbery;
 
-require_once __DIR__ . '/../vendor/autoload.php';
-
-use Shrubbery\DiningLocation;
+use Shrubbery\Restuarant;
 
 class CreateRestaurant
 {
 
-    public function GenerateList($resultArray)
+    public function generateList($resultArray)
     {
         $restaurantList = array();
 
         for ($i=0; $i < count($resultArray); ++$i) {
-            $restaurant = new DiningLocation($resultArray[$i]);
+            $restaurant = new Restuarant($resultArray[$i]);
 
             $restaurantList[] = $restaurant;
         }
@@ -23,4 +21,3 @@ class CreateRestaurant
     }
 
 }
-?>

@@ -3,7 +3,8 @@
 namespace Shrubbery;
 
 
-    class DiningLocation{
+class Restuarant
+{
         public $placeid;
         public $placename;
         public $address;
@@ -19,7 +20,6 @@ namespace Shrubbery;
                 $this->streetname = $result["address"]["street"];
                 $this->zipcode = $result["address"]["zipcode"];
         }
-    }
+}
 
 
-?>

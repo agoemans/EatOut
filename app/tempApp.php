@@ -1,5 +1,5 @@
             <?php
-                require_once(__DIR__.'/../src/helper.php');
+                require_once(__DIR__ . '/../src/GetJSONList.php');
                 require_once(__DIR__.'/../vendor/autoload.php');
 
                 echo "This will show you a list of vegetarian restaurants in Amsterdam";
