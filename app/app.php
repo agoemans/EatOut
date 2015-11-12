@@ -6,19 +6,27 @@
 
 	//Section for adding configuration
 
+	$app->register(new Silex\Provider\TwigServiceProvider(), array(
+	'twig.path' => __DIR__.'/views',
+		));
+
+
 	$app->get('/', function() use ($app){
 	    $output = '';
+		$RestaurantList = '';
+		$twig->render('@admin/index.html', array());
 	    $output = "This will show you a list of vegetarians restaurants in Amsterdam";
 
 		$TempList = new GetJSONList();
-		//$RestaurantList = $TempList->helper();
-		var_dump($TempList);
+		$RestaurantList = $TempList->helper();
+		//var_dump($TempList);
 
 
 
-	    //return $TempList->Helper();
-		return $output;
+	    return $RestaurantList;
+		//return $output;
 	});
+
 
 
 

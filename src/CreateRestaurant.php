@@ -2,7 +2,7 @@
 
 namespace Shrubbery;
 
-use Shrubbery\Restuarant;
+use Shrubbery\Restaurant;
 
 class CreateRestaurant
 {
@@ -12,7 +12,7 @@ class CreateRestaurant
         $restaurantList = array();
 
         for ($i=0; $i < count($resultArray); ++$i) {
-            $restaurant = new Restuarant($resultArray[$i]);
+            $restaurant = new Restaurant($resultArray[$i]);
 
             $restaurantList[] = $restaurant;
         }

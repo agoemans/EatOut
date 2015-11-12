@@ -3,7 +3,7 @@
 namespace Shrubbery;
 
 
-class Restuarant
+class Restaurant
 {
         public $placeid;
         public $placename;
