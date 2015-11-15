@@ -3,6 +3,7 @@
 namespace Shrubbery;
 
 use Shrubbery\Restaurant;
+use Shrubbery\GetJSONList;
 
 class CreateRestaurant
 {
@@ -11,13 +12,31 @@ class CreateRestaurant
     {
         $restaurantList = array();
 
-        for ($i=0; $i < count($resultArray); ++$i) {
-            $restaurant = new Restaurant($resultArray[$i]);
+       // echo "out of the loop";
+       // var_dump($resultArray["results"]);
+        //print_r(array_values($resultArray));
+
+        for ($i=0; $i < count($resultArray["results"]); ++$i) {
+            $restaurant = new Restaurant($resultArray["results"][$i]);
+            //echo "IN the loop";
+           // var_dump($resultArray["results"][$i]);
+
 
             $restaurantList[] = $restaurant;
+            //var_dump($restaurantList);
         }
 
         return $restaurantList;
+    }
+
+    public function receivedData($data)
+    {
+
+        $finalData = array();
+        $finalData = $this->generateList($data);
+        //$finalData = $data;
+        //var_dump($finalData);
+        return $finalData;
     }
 
 }

@@ -6,3 +6,6 @@ vendor/
 
 #composer
 *.phar
+
+#php test files
+tempApp.php
