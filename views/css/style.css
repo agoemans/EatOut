@@ -1,0 +1,29 @@
+body {
+    margin:auto;
+}
+p {
+    color: #00CC00;
+}
+
+li {
+    list-style: none;
+}
+
+.container {
+    width:300px;
+}
+
+.container h3 {
+    color: #DC143C;
+}
+
+.container li h3 small {
+    color: #DEB887;
+}
+
+li#last-child {
+    /*background-color: #00CC00;*/
+    border-bottom:dashed;
+    border-color: #DC143C;
+    border-width:2px;
+}

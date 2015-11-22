@@ -2,9 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ name }}</title>
+    <link rel="stylesheet" href="style.css" />
+
+
+    <title>Where have all the vegetarian restaurants gone?</title>
 </head>
 <body>
+    <div class="container">
+        <ul id="finalList">
+            {% for item in finalList %}
+                <li>{{ item.placename|striptags|title }}</li>
+                <li>{{ item.streetname }}</li>
+                <li>{{ item.zipcode }}</li>
+                </br>
+            {% endfor %}
+        </ul>
+    </div>
 
 </body>
 </html>
