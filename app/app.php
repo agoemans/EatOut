@@ -4,6 +4,7 @@
 	use Shrubbery\CreateRestaurant;
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpFoundation\Response;
+	use Shrubbery\fileActions;
 
 
 
@@ -24,30 +25,10 @@
 	    $output = '';
 		$finalList = '';
 
-	    $output = "This will show you a list of vegetarians restaurants in Amsterdam";
 
-		$TempList = new GetJSONList();
-		$TempRestaurant = new CreateRestaurant();
+		$newFileAction = new fileActions();
 
-		$finalList = $TempRestaurant->receivedData($TempList->helper());
-		//print_r(array_values($finalList));
-		//var_dump($finalList[0]);
-/*		for ($i=0; $i < count($finalList); ++$i) {
-			//echo "first loop";
-			echo '</br>';
-			echo "Place name:  ";
-			echo $finalList[$i]->placename;
-			echo '</br>';
-			echo "Street name:  ";
-			echo $finalList[$i]->streetname;
-			echo '</br>';
-			echo "Zip Code:  ";
-			echo $finalList[$i]->zipcode;
-			echo '</br>';
-			echo '</br>';*/
-			//echo 'before for loop';
-
-		//}
+        $readFile = $newFileAction->read_from_file();
 
        // $bootstrapCSS = new PathPackage('/../vendor/twitter/bootstrap/dist', new StaticVersionStrategy('v1'));
 
@@ -56,7 +37,7 @@
 
 		return $app['twig']->render('index.twig', array(
 			'name' => 'amy',
-            'finalList' => $finalList,
+            'finalList' => $readFile,
             'bootstrapPath' => $bootstrappackage
 		));
 	});

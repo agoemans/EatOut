@@ -9,3 +9,6 @@ vendor/
 
 #php test files
 tempApp.php
+
+test.JSON
+test.txt
