@@ -4,8 +4,13 @@
     <head><!-- whatever -->
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('/../views/css/style.css') }}" media="all" />
-            <link rel="stylesheet" href="{{ bootstrapPath }}" media="all" />
+
+                {#<link rel="stylesheet" href="{{ asset('/../views/css/style.css') }}" media="all" />#}
+                {#<link rel="stylesheet" href="{{ bootstrapPath }}" media="all" />#}
+
+                    <link rel="stylesheet" href="{{'/../views/assets/bootstrap.css'}}" media="all" />
+                    <link rel="stylesheet" href="{{ asset('/../views/css/style.css') }}" media="all" />
+
 
         {% endblock %}
     </head>
