@@ -13,8 +13,9 @@ li {
     width:300px;
 }
 
-.container h3 {
+.container h3, h1 {
     color: #DC143C;
+    margin-top:10px;
 }
 
 .container li h3 small {
@@ -23,7 +24,7 @@ li {
 
 li#last-child {
     /*background-color: #00CC00;*/
-    border-bottom:dashed;
+    border-bottom:solid;
     border-color: #DC143C;
     border-width:2px;
 }

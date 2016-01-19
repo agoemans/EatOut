@@ -8,11 +8,12 @@ use Shrubbery\CreateRestaurant;
 require_once(__DIR__.'/../vendor/autoload.php');
 
 
-class fileActions
+class FileActions
 {
-    public $filename = "test.JSON";
+    private $filename = "test.JSON";
 
-    function write_to_file(){
+    private function writeToFile()
+    {
 
         $finalList = '';
 
@@ -28,16 +29,15 @@ class fileActions
 
     }
 
-    function read_from_file(){
-        if (file_exists($this->filename)){
+    public function readFromFile()
+    {
+        if (file_exists($this->filename)) {
             $handle = fopen($this->filename, "r");
             $contents = json_decode(fread($handle, filesize($this->filename)));
             fclose($handle);
-
         }
-
         else {
-            $this->write_to_file();
+            $this->writeToFile();
         }
 
         return $contents;

@@ -18,9 +18,9 @@
         <div class="container">
 
             <ul id="finalList">
-                <h3>Name of restaurants</h3>
+                <h1> Name of restaurants</h1>
                 {% for item in finalList %}
-                    <li><h3><small>{{ item.placename|striptags|title }}</small></h3></li>
+                    <li><h3 ><small><strong>{{ item.placename|striptags|title }}</strong></small></h3></li>
                     <li>
                         <h4>
                             <small>{{ item.streetname }}</small>
@@ -32,7 +32,7 @@
                         </h4>
                     </li>
 
-                    </br>
+
                 {% endfor %}
             </ul>
         </div>

@@ -8,12 +8,13 @@
 require '../vendor/autoload.php';
 use GuzzleHttp\Client;
 
-    function getClientInfo(){
+function getClientInfo()
+{
         $client = new GuzzleHttp\Client(['base_uri' => 'http://httpbin.org']);
-        $response = $client->request('GET','get');
+        $response = $client->request('GET', 'get');
 //        $response = $request->send();
         $code = $response->getBody();
         return $code;
 
-    }
+}
 ?>
