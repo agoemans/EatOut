@@ -2,7 +2,7 @@
     require_once(__DIR__.'/../vendor/autoload.php');
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpFoundation\Response;
-    use Shrubbery\FileActions;
+    use Shrubbery\Helper;
     use Assetic\AssetWriter;
     use Assetic\Asset\AssetCollection;
     use Assetic\Asset\FileAsset;
@@ -40,7 +40,7 @@
     //Section for adding configuration
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/../views',
+    'twig.path' => __DIR__.'/../templates',
         ));
 
     $twig = $app['twig'];
@@ -52,7 +52,7 @@
         $finalList = '';
 
 
-        $newFileAction = new FileActions();
+        $newFileAction = new Helper();
 
         $readFile = $newFileAction->readFromFile();
 

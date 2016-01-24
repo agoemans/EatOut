@@ -1,5 +1,6 @@
 body {
     margin:auto;
+    color: #888484;
 }
 p {
     color: #00CC00;
@@ -10,21 +11,38 @@ li {
 }
 
 .container {
-    width:300px;
+    max-width:1400px;
 }
 
-.container h3, h1 {
+.container h3 {
     color: #DC143C;
-    margin-top:10px;
+    margin-top:0px;
+}
+
+.container h1 {
+    color: #DEB887;
+    padding-bottom: 30px;
 }
 
 .container li h3 small {
     color: #DEB887;
 }
 
-li#last-child {
+.restaurant {
     /*background-color: #00CC00;*/
-    border-bottom:solid;
+
     border-color: #DC143C;
-    border-width:2px;
+    border-width: 2px;
+    width: 300px;
+    float: left;
+    margin: 15px;
+    height: 200px;
+    background-color: #f8f8f8;
+    padding: 20px;
+    box-shadow: #ccc 2px 2px 5px;
+}
+
+.container h4 {
+    padding-top:10px;
+    line-height: 1.5;
 }

@@ -20,15 +20,15 @@
             <ul id="finalList">
                 <h1> Name of restaurants</h1>
                 {% for item in finalList %}
-                    <li><h3 ><small><strong>{{ item.placename|striptags|title }}</strong></small></h3></li>
-                    <li>
+                    <li class="restaurant"><h3 ><strong>{{ item.placename|striptags|title }}</strong></h3>
+
                         <h4>
-                            <small>{{ item.streetname }}</small>
+                            {{ item.streetname }}
                         </h4>
-                    </li>
-                    <li id = "last-child">
+
+
                         <h4>
-                            <small>{{ item.zipcode }}</small>
+                            {{ item.zipcode }}
                         </h4>
                     </li>
 

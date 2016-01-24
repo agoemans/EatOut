@@ -5,10 +5,10 @@ namespace Shrubbery;
 use Shrubbery\Restaurant;
 use Shrubbery\GetJSONList;
 
-class CreateRestaurant
+class RestaurantList
 {
 
-    public function generateList($resultArray)
+    public static function generateList($resultArray)
     {
         $restaurantList = array();
 
@@ -27,16 +27,6 @@ class CreateRestaurant
         }
 
         return $restaurantList;
-    }
-
-    public function receivedData($data)
-    {
-
-        $finalData = array();
-        $finalData = $this->generateList($data);
-        //$finalData = $data;
-        //var_dump($finalData);
-        return $finalData;
     }
 
 }
