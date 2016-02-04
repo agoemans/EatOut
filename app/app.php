@@ -10,6 +10,7 @@
     use Assetic\AssetManager;
     use Assetic\Asset\AssetCache;
     use Assetic\Cache\FilesystemCache;
+    use Shrubbery\QueryProcessor;
 
     $app = new Silex\Application();
     $app['debug'] = true;
@@ -34,8 +35,22 @@
     $writer = new AssetWriter('./views/assets');
     $writer->writeAsset($cache);
 
-
     //end todo
+
+    //to register the connections
+    $queryConnection = new QueryProcessor($app);
+
+
+    $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
+    'db.options' => array(
+        'dbname' => $this->conf->dbname,
+        'user' => $this->conf->dbuser,
+        'password' => $this->conf->dbpass,
+        'host' => $this->conf->dbhost,
+        'driver'   => $this->conf->dbdriver,
+
+        ),
+    ));
 
     //Section for adding configuration
 
