@@ -11,6 +11,7 @@
     use Assetic\Asset\AssetCache;
     use Assetic\Cache\FilesystemCache;
     use Shrubbery\QueryProcessor;
+    use Shrubbery\Config;
 
     $app = new Silex\Application();
     $app['debug'] = true;
@@ -38,19 +39,24 @@
     //end todo
 
     //to register the connections
-    $queryConnection = new QueryProcessor($app);
+ //   $queryConnection = new QueryProcessor($app);
 
-
+    $conf = new Config();
     $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array(
-        'dbname' => $this->conf->dbname,
-        'user' => $this->conf->dbuser,
-        'password' => $this->conf->dbpass,
-        'host' => $this->conf->dbhost,
-        'driver'   => $this->conf->dbdriver,
+        'dbname' => $conf->dbname,
+        'user' => $conf->dbuser,
+        'password' => $conf->dbpass,
+        'host' => $conf->dbhost,
+        'driver'   => $conf->dbdriver,
 
         ),
     ));
+
+    //check connection
+    if ($app->connect_error) {
+        die("Connection failed: " . $app->connect_error);
+    }
 
     //Section for adding configuration
 
