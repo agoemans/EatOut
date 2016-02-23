@@ -50,7 +50,7 @@
         'host' => $dbOptions->dbhost,
         'driver'   => $dbOptions->dbdriver
 //'dbname' => 'EatOutDB',
-//        'user' => 'amy',
+//        'user' => 'amy',git stat
 //        'password' => 'fesT3r',
 //        'host' => 'localhost',
 //        'driver'   => 'pdo_mysql',
