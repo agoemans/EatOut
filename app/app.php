@@ -10,7 +10,7 @@
     use Assetic\AssetManager;
     use Assetic\Asset\AssetCache;
     use Assetic\Cache\FilesystemCache;
-    use Shrubbery\QueryProcessor;
+    use Shrubbery\QueryProcesor;
     use Shrubbery\Config;
 
     $app = new Silex\Application();
@@ -41,22 +41,44 @@
     //to register the connections
  //   $queryConnection = new QueryProcessor($app);
 
-    $conf = new Config();
+    $dbOptions = new Config();
     $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array(
-        'dbname' => $conf->dbname,
-        'user' => $conf->dbuser,
-        'password' => $conf->dbpass,
-        'host' => $conf->dbhost,
-        'driver'   => $conf->dbdriver,
+        'dbname' => $dbOptions->dbname,
+        'user' => $dbOptions->dbuser,
+        'password' => $dbOptions->dbpass,
+        'host' => $dbOptions->dbhost,
+        'driver'   => $dbOptions->dbdriver
+//'dbname' => 'EatOutDB',
+//        'user' => 'amy',
+//        'password' => 'fesT3r',
+//        'host' => 'localhost',
+//        'driver'   => 'pdo_mysql',
 
         ),
     ));
 
-    //check connection
-    if ($app->connect_error) {
-        die("Connection failed: " . $app->connect_error);
+    $mysqli = new mysqli("localhost", $dbOptions->dbuser, $dbOptions->dbpass);
+
+    $query = "SELECT * FROM EatOutDB.Address";
+    $resultsList = null;
+//
+//    $sql = "SELECT * FROM Address";
+//    $post = $app['db']->fetchAssoc($sql, array((int) $id));
+    if ($result = $mysqli->query($query))
+    {
+        while ($row = $result->fetch_assoc()) {
+//            var_dump("%s (%s)\n", $row["streetname"], $row["mobile"]);
+        }
     }
+    $resultsList = $result;
+
+
+//    print_r($post);
+//    return "<h1>{$post['title']}</h1>".
+//    "<p>{$post['body']}</p>";
+//    $result->free();
+    $mysqli->close();
 
     //Section for adding configuration
 
@@ -72,6 +94,8 @@
         $output = '';
         $finalList = '';
 
+        $queryConnection = new QueryProcesor();
+        $newquery = $queryConnection ->selectResults();
 
         $newFileAction = new Helper();
 
@@ -81,7 +105,7 @@
         return $app['twig']->render('index.twig', array(
             'name' => 'amy',
             'finalList' => $readFile,
-
+            'post' => $newquery
         ));
     });
 
