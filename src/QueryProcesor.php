@@ -22,7 +22,7 @@ class QueryProcesor
 
     public function selectResults()
     {
-        $mysqli = new mysqli("localhost", $this->dbOptions->dbuser, $this->dbOptions->dbpass);
+        $mysqli = new \mysqli("localhost", $this->dbOptions->dbuser, $this->dbOptions->dbpass);
 
         $query = "SELECT * FROM EatOutDB.Address";
         if ($result = $mysqli->query($query)) {
@@ -31,6 +31,27 @@ class QueryProcesor
                 var_dump("%s (%s)\n", $row["streetname"], $row["mobile"]);
             }
         }
+        $mysqli->close();
+        return $this->resultsList;
+
+    }
+
+    public function insertAddress($restuarant)
+    {
+        $mysqli = new \mysqli("localhost", $this->dbOptions->dbuser, $this->dbOptions->dbpass);
+
+        $query = "Insert into EatOutDB.Address (placename, restaurantid, streetname) values('$restuarant->placename',$restuarant->placeid,'$restuarant->streetname')";
+
+        var_dump($restuarant);
+
+        if ($mysqli->query($query) === true) {
+            echo "New record created successfully";
+        } else {
+            var_dump($mysqli->error);
+        }
+
+        $query = "Insert into EatOutDB.Address (telephone, mobile, postcode) values('$restuarant->telephone','$restuarant->mobile','$restuarant->zipcode') where restaurantid = $restuarant->placeid";
+
         $mysqli->close();
         return $this->resultsList;
 

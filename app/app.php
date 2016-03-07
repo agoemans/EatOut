@@ -73,11 +73,6 @@
     }
     $resultsList = $result;
 
-
-//    print_r($post);
-//    return "<h1>{$post['title']}</h1>".
-//    "<p>{$post['body']}</p>";
-//    $result->free();
     $mysqli->close();
 
     //Section for adding configuration
