@@ -20,7 +20,7 @@ class RestaurantList
 
         for ($i=0; $i < count($resultArray["results"]); ++$i) {
             $restaurant = new Restaurant($resultArray["results"][$i]);
-            $queryConnection->insertAddress($restaurant);
+            $queryConnection->updateRestaurantTables($restaurant);
 
             $restaurantList[] = $restaurant;
             //var_dump($restaurantList);

@@ -38,42 +38,7 @@
 
     //end todo
 
-    //to register the connections
- //   $queryConnection = new QueryProcessor($app);
 
-    $dbOptions = new Config();
-    $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
-    'db.options' => array(
-        'dbname' => $dbOptions->dbname,
-        'user' => $dbOptions->dbuser,
-        'password' => $dbOptions->dbpass,
-        'host' => $dbOptions->dbhost,
-        'driver'   => $dbOptions->dbdriver
-//'dbname' => 'EatOutDB',
-//        'user' => 'amy',git stat
-//        'password' => 'fesT3r',
-//        'host' => 'localhost',
-//        'driver'   => 'pdo_mysql',
-
-        ),
-    ));
-
-    $mysqli = new mysqli("localhost", $dbOptions->dbuser, $dbOptions->dbpass);
-
-    $query = "SELECT * FROM EatOutDB.Address";
-    $resultsList = null;
-//
-//    $sql = "SELECT * FROM Address";
-//    $post = $app['db']->fetchAssoc($sql, array((int) $id));
-    if ($result = $mysqli->query($query))
-    {
-        while ($row = $result->fetch_assoc()) {
-//            var_dump("%s (%s)\n", $row["streetname"], $row["mobile"]);
-        }
-    }
-    $resultsList = $result;
-
-    $mysqli->close();
 
     //Section for adding configuration
 
@@ -90,7 +55,7 @@
         $finalList = '';
 
         $queryConnection = new QueryProcesor();
-        $newquery = $queryConnection ->selectResults();
+        $newquery = $queryConnection->insertCategoryInfo();
 
         $newFileAction = new Helper();
 
