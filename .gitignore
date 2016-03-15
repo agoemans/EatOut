@@ -14,3 +14,4 @@ test.JSON
 test.txt
 config.yml
 config.php
+*.ini

@@ -55,7 +55,7 @@
         $finalList = '';
 
         $queryConnection = new QueryProcesor();
-        $newquery = $queryConnection->insertCategoryInfo();
+        $newquery = $queryConnection->insertCategoryInfo('Dutch');
 
         $newFileAction = new Helper();
 
