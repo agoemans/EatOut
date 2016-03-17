@@ -99,18 +99,27 @@ class QueryProcesor
         $catCode = null;
         $row_cnt = null;
 
-        $mysqli = new \mysqli($this->dbhost, $this->dbuser, $this->dbpass, $this->dbname);
+        $mysqli = new \mysqli($this->dbhost, $this->dbuser, $this->dbpass);
 
-        $query = "SELECT * FROM EatOutDB.basicCategory where categoryname = $categoryname ";
+//        $query = "SELECT * FROM EatOutDB.basicCategory where categoryname = 'French' ";
+
+        $query  = "Insert into EatOutDB.basicCategory (categoryname) where VALUE ($categoryname)";
 
 
         if ($result = $mysqli->query($query)) {
             $row_cnt = $result->num_rows;
-            print_r($row_cnt);
+            print_r($result);
             if ($row_cnt == 0) {
-                $result->free();
-                $query = "Insert into EatOutDB.basicCategory (categoryname) values($categoryname)";
-                print_r(" empty");
+                $result->free_result();
+             //   $mysqli->insert_query  = "Insert into EatOutDB.basicCategory (categoryname) where VALUE ('$categoryname')";
+                print_r(" emptyness");
+
+            } else{
+                print_r ("exists");
+                $insert_query= "Select * from EatOutDB.basicCategory where categoryname = $categoryname";
+                $row = $result->fetch_row();
+                print_r($row["categorycode"]);
+
             }
 
 //                while ($row = $result->fetch_assoc()) {
