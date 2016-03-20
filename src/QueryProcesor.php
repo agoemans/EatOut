@@ -24,8 +24,8 @@ class QueryProcesor
 
     public function __construct()
     {
-        $this->dbOptions = new Config();
-        $this->resultsList = array();
+//        $this->dbOptions = new Config();
+//        $this->resultsList = array();
 
         $this->ini_array = parse_ini_file("config.ini", true);
         $this->dbuser = $this->ini_array["db_user"];

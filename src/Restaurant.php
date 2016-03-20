@@ -47,8 +47,7 @@ class Restaurant
 
 //        print_r($result[0]["restaurantid"]);
         $restaurant = new Restaurant();
-
-        $restaurant->placeid = $result[0]["restaurantid"];
+        $restaurant->placeid = $result["restaurantid"];
         $restaurant->placename = $result["placename"];
         $restaurant->streetname = $result["streetname"];
         $restaurant->zipcode = $result["postcode"];

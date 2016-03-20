@@ -56,17 +56,11 @@
         $finalList = '';
 
         $restaurantProcessor = new RestaurantProcessor();
-//        $newquery = $queryConnection->insertCategoryInfo('Dutch');
-
-//        $newFileAction = new Helper();
-
-//        $readFile = $newFileAction->readFromFile();
 
 
         return $app['twig']->render('index.twig', array(
-            'name' => 'amy',
+            'name' => 'Restaurants In Amsterdam',
             'finalList' => $restaurantProcessor->readFromDatabase()
-//            'post' => $newquery
         ));
     });
 
