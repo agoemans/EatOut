@@ -3,7 +3,7 @@
 namespace Shrubbery;
 
 use Shrubbery\GetJSONList;
-use Shrubbery\RestaurantList;
+use Shrubbery\RestaurantProcessor;
 use GuzzleHttp\Client;
 
 require_once(__DIR__.'/../vendor/autoload.php');
@@ -20,7 +20,7 @@ class Helper
 
         //$TempRestaurant = new RestaurantList();
 
-        $finalList = RestaurantList::generateList($this->getJSONFile());
+        $finalList = RestaurantProcessor::generateList($this->getJSONFile());
 
         $handle = fopen($this->filename, "w+");
 

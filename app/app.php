@@ -11,6 +11,7 @@
     use Assetic\Asset\AssetCache;
     use Assetic\Cache\FilesystemCache;
     use Shrubbery\QueryProcesor;
+    use Shrubbery\RestaurantProcessor;
     use Shrubbery\Config;
 
     $app = new Silex\Application();
@@ -54,18 +55,18 @@
         $output = '';
         $finalList = '';
 
-        $queryConnection = new QueryProcesor();
-        $newquery = $queryConnection->insertCategoryInfo('Dutch');
+        $restaurantProcessor = new RestaurantProcessor();
+//        $newquery = $queryConnection->insertCategoryInfo('Dutch');
 
-        $newFileAction = new Helper();
+//        $newFileAction = new Helper();
 
-        $readFile = $newFileAction->readFromFile();
+//        $readFile = $newFileAction->readFromFile();
 
 
         return $app['twig']->render('index.twig', array(
             'name' => 'amy',
-            'finalList' => $readFile,
-            'post' => $newquery
+            'finalList' => $restaurantProcessor->generateList()
+//            'post' => $newquery
         ));
     });
 

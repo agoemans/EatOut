@@ -56,6 +56,7 @@ class QueryProcesor
     {
         $this->insertAddress($restaurant);
         $this->insertPhoneInfo($restaurant);
+        $this->insertCategoryInfo($restaurant);
     }
 
     public function insertAddress($restaurant)
@@ -93,17 +94,19 @@ class QueryProcesor
 
     }
 
-    public function insertCategoryInfo($categoryname)
+    public function insertCategoryInfo($restaurant)
     {
         $newArray = array();
         $catCode = null;
         $row_cnt = null;
+        $restaurantID = $restaurant->placeid;
+        $basicCategoryID = null;
 
         $mysqli = new \mysqli($this->dbhost, $this->dbuser, $this->dbpass);
 
-//        $query = "SELECT * FROM EatOutDB.basicCategory where categoryname = 'French' ";
+        $query = "SELECT * FROM EatOutDB.basicCategory where categoryname = '$restaurant->category'";
 
-        $query  = "Insert into EatOutDB.basicCategory (categoryname) where VALUE ($categoryname)";
+//        $query  = "Insert into EatOutDB.basicCategory (categoryname) where VALUE ($categoryname)";
 
 
         if ($result = $mysqli->query($query)) {
@@ -111,23 +114,25 @@ class QueryProcesor
             print_r($result);
             if ($row_cnt == 0) {
                 $result->free_result();
-             //   $mysqli->insert_query  = "Insert into EatOutDB.basicCategory (categoryname) where VALUE ('$categoryname')";
+                $query  = "Insert into EatOutDB.basicCategory (categoryname) VALUE ('$restaurant->category')";
+                $mysqli->query($query);
                 print_r(" emptyness");
 
             } else{
-                print_r ("exists");
-                $insert_query= "Select * from EatOutDB.basicCategory where categoryname = $categoryname";
                 $row = $result->fetch_row();
-                print_r($row["categorycode"]);
+                print_r ("exists");
+                print_r($row[0]);
+                $basicCategoryID = $row[0];
+
+                $result->free_result();
+                $query  = "Insert into EatOutDB.restaurantCategory (idrestaurantCategory, idbasicCategory) VALUE ($restaurant->placeid,$basicCategoryID)";
+                $mysqli->query($query);
+//                $insert_query= "Select * from EatOutDB.basicCategory where categoryname = $categoryname";
+//                $row = $result->fetch_row();
+//                print_r($row["categorycode"]);
 
             }
 
-//                while ($row = $result->fetch_assoc()) {
-//
-//                    $catCode = $row["categorycode"];
-////                    $query = "Insert into EatOutDB.restaurantCategory (idbasicCategory, idrestaurant) values($catCode, 2312)";
-//                     printf("%s (%s)\n", $row["categorycode"], $row["categoryname"]);
-//                }
 
         } else {
              var_dump($mysqli->error);
