@@ -39,16 +39,23 @@ class QueryProcesor
     {
         $mysqli = new \mysqli($this->dbhost, $this->dbuser, $this->dbpass);
 
-        $query = Database::prepare("SELECT * FROM EatOutDB.Address");
-        $query->execute();
+        $query = "SELECT * FROM EatOutDB.Address";
+
+        $resultsList = null;
+
         if ($result = $mysqli->query($query)) {
             while ($row = $result->fetch_assoc()) {
-                $this->resultsList[]=[$row["streetname"]];
-//                var_dump("%s (%s)\n", $row["streetname"], $row["mobile"]);
+                $resultsList[]= $row;
+//                print_r($row["restaurantid"]);
+////                var_dump("%s (%s)\n", $row["streetname"], $row["mobile"]);
             }
+
+//            $resultsList = $result->fetch_assoc();
+//            print_r($resultsList);
         }
+//        print_r(count($resultsList));
         $mysqli->close();
-        return $this->resultsList;
+        return $resultsList;
 
     }
 

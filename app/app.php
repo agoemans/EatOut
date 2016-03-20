@@ -65,7 +65,7 @@
 
         return $app['twig']->render('index.twig', array(
             'name' => 'amy',
-            'finalList' => $restaurantProcessor->generateList()
+            'finalList' => $restaurantProcessor->readFromDatabase()
 //            'post' => $newquery
         ));
     });

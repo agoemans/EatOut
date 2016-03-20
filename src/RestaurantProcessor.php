@@ -27,9 +27,27 @@ class RestaurantProcessor
         $queryConnection = new QueryProcesor();
 
         for ($i=0; $i < count($rawData["results"]); ++$i) {
-            $restaurant = new Restaurant($rawData["results"][$i]);
+            $restaurant = Restaurant::fromApiData($rawData["results"][$i]);
 //            print_r($rawData);
             $queryConnection->updateRestaurantTables($restaurant);
+
+            $restaurantList[] = $restaurant;
+            //var_dump($restaurantList);
+        }
+
+        return $restaurantList;
+    }
+
+    public function readFromDatabase()
+    {
+        $queryConnection = new QueryProcesor();
+        $results = $queryConnection->selectResults();
+        $restaurantList = array();
+
+//        return $queryConnection->selectResults();
+
+        for ($i=0; $i < count($results); ++$i) {
+            $restaurant = Restaurant::fromDatabaseData($results[$i]);
 
             $restaurantList[] = $restaurant;
             //var_dump($restaurantList);
