@@ -39,6 +39,8 @@
 
     //end todo
 
+    $getRestaurantList = new RestaurantProcessor();
+    $jsonObj = $getRestaurantList->readFromDatabase();
 
 
     //Section for adding configuration
@@ -50,8 +52,7 @@
     $twig = $app['twig'];
     $twig->addExtension(new \Entea\Twig\Extension\AssetExtension($app));
 
-    $app->get('/', function (Request $request) use ($app)
-    {
+    $app->get('/', function (Request $request) use ($app) {
         $output = '';
         $finalList = '';
 
@@ -60,8 +61,21 @@
 
         return $app['twig']->render('index.twig', array(
             'name' => 'Restaurants In Amsterdam',
-            'finalList' => $restaurantProcessor->readFromDatabase()
+            'finalList' => $restaurantProcessor->readFromDatabase(),
+//            AIzaSyA0KrsZmgEM8mkXEvIfurQD51SV9csPX8I
+//            'mapssrc' =>
         ));
+    });
+
+    $app->get('/api', function (Request $request) use ($jsonObj) {
+        $output = '';
+        $finalList = '';
+
+        for ($i=0; $i < 5; ++$i) {
+            $output[] = $jsonObj[$i]->streetname;
+        }
+
+        return new JsonResponse(array('name' => $output));
     });
 
 

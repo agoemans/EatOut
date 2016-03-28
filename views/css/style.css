@@ -46,3 +46,9 @@ li {
     padding-top:10px;
     line-height: 1.5;
 }
+
+#map-canvas {
+    height: 400px;
+    width: 600px;
+}
+
