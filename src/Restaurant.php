@@ -10,7 +10,8 @@ class Restaurant
     public $placename;
     public $zipcode;
     public $streetname;
-    public $geolocation;
+    public $geoLat;
+    public $geoLng;
     public $category;
     public $telephone;
     public $mobile;
@@ -38,6 +39,8 @@ class Restaurant
         $restaurant->category = $result["category"];
         $restaurant->telephone = $result["telephone"];
         $restaurant->mobile = $result["mobile"];
+        $restaurant->geoLat = $result["geolocation"]["latitude"];
+        $restaurant->geoLng = $result["geolocation"]["longitude"];
 
         return $restaurant;
     }
@@ -53,6 +56,8 @@ class Restaurant
         $restaurant->zipcode = $result["postcode"];
         $restaurant->telephone = $result["telephone"];
         $restaurant->mobile = $result["mobile"];
+        $restaurant->geoLat = $result["lat"];
+        $restaurant->geoLng = $result["lng"];
 
         return $restaurant;
     }

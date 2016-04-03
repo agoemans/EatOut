@@ -57,6 +57,7 @@
         $finalList = '';
 
         $restaurantProcessor = new RestaurantProcessor();
+//        $restaurantProcessor->generateList();
 
 
         return $app['twig']->render('index.twig', array(
@@ -72,10 +73,10 @@
         $finalList = '';
 
         for ($i=0; $i < 5; ++$i) {
-            $output[] = $jsonObj[$i]->streetname;
+            $output[] = $jsonObj[$i];
         }
 
-        return new JsonResponse(array('name' => $output));
+        return json_encode($output);
     });
 
 

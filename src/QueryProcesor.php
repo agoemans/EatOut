@@ -70,7 +70,8 @@ class QueryProcesor
     {
         $mysqli = new \mysqli($this->dbhost, $this->dbuser, $this->dbpass);
 
-        $query = "Insert into EatOutDB.Address (placename, restaurantid, streetname) values('$restaurant->placename',$restaurant->placeid,'$restaurant->streetname')";
+        $query = "Insert into EatOutDB.Address (placename, restaurantid, streetname, lat, lng)
+            values('$restaurant->placename',$restaurant->placeid,'$restaurant->streetname', $restaurant->geoLat, $restaurant->geoLng)";
 
 
         if ($mysqli->query($query) === true) {
@@ -134,10 +135,10 @@ class QueryProcesor
                 $result->free_result();
                 $query  = "Insert into EatOutDB.restaurantCategory (idrestaurantCategory, idbasicCategory) VALUE ($restaurant->placeid,$basicCategoryID)";
                 $mysqli->query($query);
-//                $insert_query= "Select * from EatOutDB.basicCategory where categoryname = $categoryname";
-//                $row = $result->fetch_row();
-//                print_r($row["categorycode"]);
 
+                $result->free_result();
+                $query  = "Update EatOutDB.Address set categorycode=$basicCategoryID where restaurantid = $restaurant->placeid";
+                $mysqli->query($query);
             }
 
 
