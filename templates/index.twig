@@ -37,10 +37,10 @@
                 {% endfor %}
             </ul>
         </div>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0KrsZmgEM8mkXEvIfurQD51SV9csPX8I"></script>
-        <script src="{{ asset('/../views/js/map.js') }}"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key={{ apiKey }}"></script>
         <script src="{{ asset('/../views/js/jsonprocessor.js') }}"></script>
-        {#<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0KrsZmgEM8mkXEvIfurQD51SV9csPX8I"#}
-                {#type="text/javascript"></script>#}
+        <script src="{{ asset('/../views/js/map.js') }}"></script>
+
+
     </body>
 </html>

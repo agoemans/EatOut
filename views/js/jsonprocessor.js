@@ -1,5 +1,8 @@
+
+
 var ajaxHelper = (function(){
     var xhttp;
+    var url = 'http://localhost:8000/api';
 
     return {
         callHTTP: function (url,callback, context){
@@ -12,7 +15,7 @@ var ajaxHelper = (function(){
             xhttp.send();
         },
 
-        getJson: function (url,callback, context){
+        getJson: function (callback, context){
             this.callHTTP(url, function(data){
 
                 var obj = JSON.parse(data);
@@ -26,10 +29,18 @@ var ajaxHelper = (function(){
 
 })();
 
-var getData = (function(){
-    var url = 'http://localhost:8000/api';
+var cleanAPIData = (function(){
+
+    function getStreetNames(array) {
+        for (var i=0; i < array.length; i++) {
+            resultsList.push({name: array[i].placename, lat:array[i].geoLat, lng:array[i].geoLng});
+        }
+        console.log(resultsList);
+        return resultsList;
+    }
 
     return {
+        getStreetNames: getStreetNames,
         //onJSONLoad: function(data){
         //    var obj = JSON.parse(data);
         //    console.log(obj);
@@ -38,12 +49,14 @@ var getData = (function(){
         //},
 
         getDataFromServer: function (callback, context){
-            ajaxHelper.getJson(url, callback, context);
+            ajaxHelper.getJson(callback, context);
         }
     }
 })();
+//
+//cleanAPIData.getDataFromServer(function(obj){
+//    console.log(obj);
+//}, this);
 
-getData.getDataFromServer(function(obj){
-    console.log(obj);
-}, this);
+
 

@@ -55,6 +55,11 @@
     $app->get('/', function (Request $request) use ($app) {
         $output = '';
         $finalList = '';
+        $apiKey = '';
+
+        $ini_Obj = parse_ini_file("data.ini", true);
+        $apiKey = $ini_Obj["apiKey"];
+
 
         $restaurantProcessor = new RestaurantProcessor();
 //        $restaurantProcessor->generateList();
@@ -63,8 +68,8 @@
         return $app['twig']->render('index.twig', array(
             'name' => 'Restaurants In Amsterdam',
             'finalList' => $restaurantProcessor->readFromDatabase(),
-//            AIzaSyA0KrsZmgEM8mkXEvIfurQD51SV9csPX8I
-//            'mapssrc' =>
+            'apiKey' => $apiKey
+
         ));
     });
 
