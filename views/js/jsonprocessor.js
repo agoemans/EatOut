@@ -29,30 +29,37 @@ var ajaxHelper = (function(){
 
 })();
 
-var cleanAPIData = (function(){
-
-    function getStreetNames(array) {
+var cleanAPIData = {
+    resultsList: [],
+    getStreetNames: function (array) {
         for (var i=0; i < array.length; i++) {
-            resultsList.push({name: array[i].placename, lat:array[i].geoLat, lng:array[i].geoLng});
+            cleanAPIData.resultsList.push({name: array[i].placename, lat:array[i].geoLat, lng:array[i].geoLng});
         }
-        console.log(resultsList);
-        return resultsList;
+        console.log(cleanAPIData.resultsList);
+        return cleanAPIData.resultsList;
+    },
+
+    getDataFromServer: function (callback, context){
+        ajaxHelper.getJson(callback, context);
     }
 
-    return {
-        getStreetNames: getStreetNames,
-        //onJSONLoad: function(data){
-        //    var obj = JSON.parse(data);
-        //    console.log(obj);
-        //
-        //    callback.call(cintwx, obj);
-        //},
+}
 
-        getDataFromServer: function (callback, context){
-            ajaxHelper.getJson(callback, context);
-        }
+function dataProcessor (cb, ctx) {
+    this.onComplete = {
+        callback: cb,
+        context: ctx
+    };
+
+    this.processData = function (data) {
+        this.onComplete.callback.call(this.onComplete.context, data);
     }
-})();
+
+    this.fetchData = function (){
+        ajaxHelper.getJson(this.processData,this)
+    }
+
+};
 //
 //cleanAPIData.getDataFromServer(function(obj){
 //    console.log(obj);
