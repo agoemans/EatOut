@@ -1,5 +1,6 @@
 var map;
 var myLatLng = {lat: 52.3837955, lng: 4.9130078};
+var markerGroup = [];
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map-canvas'), {
@@ -7,7 +8,7 @@ function initMap() {
         zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
-
+    google.maps.event.addListener(map, 'idle', showMarkers);
 }
 
 function updateMap() {
@@ -21,34 +22,68 @@ function updateMap() {
 }
 
 function gotData(data) {
-    var markerPositionList = [];
+    //var markerGroup = [];
     var res = cleanAPIData.getStreetNames(data);
 
-    for(var i=0; i < res.length; i++){
+    console.log(res.length % 10);
+    createMarkers(res);
+    res = res.slice(11);
+    createMarkers(res);
+    res = res.slice(11);
+    createMarkers(res);
+    res = res.slice(11);
+    createMarkers(res);
+    res = res.slice(11);
+    createMarkers(res);
+    res = res.slice(11);
 
-        var markerPos = {lat: parseFloat(res[i].lat), lng: parseFloat(res[i].lng)};
+
+    //return markerPositionList;
+    setMarkerOnMap(markerGroup);
+}
+
+function createMarkers(arr){
+
+    if (arr < 10){
+        counter = arr.length
+    } else {
+        counter = 10;
+    }
+    for(var i=0; i < counter; i++){
+        var markerPos = {lat: parseFloat(arr[i].lat), lng: parseFloat(arr[i].lng)};
         var marker = new google.maps.Marker({
             position: markerPos,
             map: map,
-            title: 'Hello World!'
+            title: arr[i].placename
         });
-        markerPositionList.push(marker);
+        markerGroup.push(marker);
     }
-    //return markerPositionList;
-    setMarkerOnMap(markerPositionList);
 }
 
 
 function setMarkerOnMap(data){
-    var markerGroup = data;
+    var markerHolder = data;
 
-    for(var i=0; i < markerGroup.length; i++){
-        var location = markerGroup[i];
+    for(var i=0; i < 5; i++){
+        var location = markerHolder[i];
         window.setTimeout(function(myMap){
             return function (){ myMap.setMap(map);}
         } (location), i * 200);
     }
 
+}
+
+function showMarkers() {
+    var testLatLng = {lat: 52.378010, lng: 4.895868};
+    var bounds = map.getBounds();
+    var ne = bounds.getNorthEast();
+    var sw = bounds.getSouthWest();
+    console.log(bounds, ne, sw)
+
+
+    // Call you server with ajax passing it the bounds
+
+    // In the ajax callback delete the current markers and add new markers
 }
 
 updateMap();
