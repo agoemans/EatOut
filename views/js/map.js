@@ -27,19 +27,15 @@ function gotData(data) {
 
     console.log(res.length % 10);
     createMarkers(res);
-    res = res.slice(11);
-    createMarkers(res);
-    res = res.slice(11);
-    createMarkers(res);
-    res = res.slice(11);
-    createMarkers(res);
-    res = res.slice(11);
-    createMarkers(res);
-    res = res.slice(11);
 
 
     //return markerPositionList;
     setMarkerOnMap(markerGroup);
+
+    var mapPrcssr = new mapProcessor();
+
+    mapPrcssr.getDataFromDB();
+    console.log(mapPrcssr.markerList);
 }
 
 function createMarkers(arr){
@@ -49,7 +45,8 @@ function createMarkers(arr){
     } else {
         counter = 10;
     }
-    for(var i=0; i < counter; i++){
+    for(var i=0; i < 4; i++){
+        console.log(i, arr[4])
         var markerPos = {lat: parseFloat(arr[i].lat), lng: parseFloat(arr[i].lng)};
         var marker = new google.maps.Marker({
             position: markerPos,
@@ -78,7 +75,7 @@ function showMarkers() {
     var bounds = map.getBounds();
     var ne = bounds.getNorthEast();
     var sw = bounds.getSouthWest();
-    console.log(bounds, ne, sw)
+    //console.log(bounds, ne, sw)
 
 
     // Call you server with ajax passing it the bounds

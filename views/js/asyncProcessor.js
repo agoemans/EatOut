@@ -1,3 +1,4 @@
+//todo change this to a module first
 function asyncProcessor (cb, ctx) {
     this.onComplete = {
         callback: cb,
@@ -9,7 +10,7 @@ function asyncProcessor (cb, ctx) {
     }
 
     this.fetchData = function (){
-        ajaxHelper.getJson(this.processData,this)
+        httpHelper.getJson(this.processData,this)
     }
 
 };

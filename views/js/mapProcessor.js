@@ -5,8 +5,8 @@ function mapProcessor(){
 }
 
 mapProcessor.prototype.getDataFromDB = function () {
-    dataprocessor = new dataProcessor(this.storeMarkerInfo, this);
-    dataProcessor.fetchData();
+    asyncProcessor(this.storeMarkerInfo, this);
+    asyncProcessor.fetchData();
 };
 
 mapProcessor.prototype.cleanDBData = function (data) {
@@ -19,18 +19,21 @@ mapProcessor.prototype.cleanDBData = function (data) {
 mapProcessor.prototype.storeMarkerInfo = function (data) {
     this.cleanDBData(data);
     var tempList;
-    setTimeout(function(){
-        this.processMarkerInfo()
-
-    }, 10000)
-
-    var i = 0;
-    var startPos = 0;
-    var endPos = 11;
-    while (i < 10){
-        tempList = this.restaurantList.slice(startPos, endPos);
-        startPos += endPos;
-        endPos += endPos;
+    var x = 0;
+    while (x < 10){
+        setTimeout(function(){
+            for (var i = 0; i < 10; i ++){
+                var markerPos = {lat: parseFloat(this.restaurantList[i].lat), lng: parseFloat(this.restaurantList[i].lng)};
+                var marker = new google.maps.Marker({
+                    position: markerPos,
+                    map: map,
+                    title: restaurantList[i].placename
+                });
+                this.markerList.push(marker);
+            }
+            this.restaurantList.splice(0,10);
+        }, 10000);
+        x++;
     }
 };
 
