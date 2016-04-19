@@ -25,17 +25,15 @@ function gotData(data) {
     //var markerGroup = [];
     var res = cleanAPIData.getStreetNames(data);
 
-    console.log(res.length % 10);
     createMarkers(res);
-
 
     //return markerPositionList;
     setMarkerOnMap(markerGroup);
 
-    var mapPrcssr = new mapProcessor();
+    var mapProcessor = new MapProcessor();
 
-    mapPrcssr.getDataFromDB();
-    console.log(mapPrcssr.markerList);
+    mapProcessor.getDataFromDB();
+    console.log(mapProcessor.markerList);
 }
 
 function createMarkers(arr){
@@ -46,7 +44,7 @@ function createMarkers(arr){
         counter = 10;
     }
     for(var i=0; i < 4; i++){
-        console.log(i, arr[4])
+        //console.log(i, arr[4])
         var markerPos = {lat: parseFloat(arr[i].lat), lng: parseFloat(arr[i].lng)};
         var marker = new google.maps.Marker({
             position: markerPos,
@@ -61,10 +59,10 @@ function createMarkers(arr){
 function setMarkerOnMap(data){
     var markerHolder = data;
 
-    for(var i=0; i < 5; i++){
+    for(var i=0; i < Math.min(markerHolder.length, 5); i++){
         var location = markerHolder[i];
-        window.setTimeout(function(myMap){
-            return function (){ myMap.setMap(map);}
+        window.setTimeout(function(location){
+            return function (){ location.setMap(map);}
         } (location), i * 200);
     }
 

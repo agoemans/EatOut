@@ -1,9 +1,14 @@
-//todo change this to a module first
-function asyncProcessor (cb, ctx) {
-    this.onComplete = {
-        callback: cb,
-        context: ctx
-    };
+//var httpHelper = require('httpHelper');
+
+function AsyncProcessor (){
+    this.onComplete;
+
+    this.setCallback = function(cb, ctx){
+        this.onComplete = {
+            callback: cb,
+            context: ctx
+        }
+    }
 
     this.processData = function (data) {
         this.onComplete.callback.call(this.onComplete.context, data);
@@ -12,5 +17,6 @@ function asyncProcessor (cb, ctx) {
     this.fetchData = function (){
         httpHelper.getJson(this.processData,this)
     }
-
 };
+
+//module.exports = AsyncProcessor;
