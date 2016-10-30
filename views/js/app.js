@@ -35,6 +35,7 @@ var app = (function () {
 	return {
 		updateMap: function () {
 			initMap();
+			var mapHandler = new MapHandler();
 			mapHandler.createMarkerList();
 		}
 	}
