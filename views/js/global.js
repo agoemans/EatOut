@@ -1,3 +1,5 @@
+//todo move this to relevant class
+var apiURL = 'http://localhost:8000/api';
 var map;
 var myLatLng = {lat: 52.3837955, lng: 4.9130078};
 var markerGroup = [];

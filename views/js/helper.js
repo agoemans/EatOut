@@ -1,6 +1,6 @@
 var httpHelper = (function(){
     var xhttp;
-    var url = 'http://localhost:8000/api';
+    var url = apiURL;
 
     return {
         callHTTP: function (url,callback, context){

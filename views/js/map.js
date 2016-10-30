@@ -1,12 +1,15 @@
 var app = (function(){
 	var xhttp;
-	var url = 'http://localhost:8000/api';
+	var url = apiURL;
 
 	return {
 		updateMap: function (){
+			//todo rename the ajax class once code is refactored
 			initMap();
-			dataProcessor = new dataProcessor(this.gotData, this);
-			dataProcessor.fetchData();
+			//dataProcessor.fetchData();
+			//dataProcessor = new dataProcessor(this.gotData, this);
+			ajaxHelper.callbackHandler(this.gotData, this);
+			ajaxHelper.fetchData(this.gotData, this);
 		}
 	}
 
@@ -31,8 +34,10 @@ function initMap() {
 
 function updateMap() {
 	initMap();
-	dataProcessor = new dataProcessor(this.gotData, this);
-	dataProcessor.fetchData();
+	ajaxHelper.callbackHandler(this.gotData, this);
+	ajaxHelper.fetchData(this.gotData, this);
+	//dataProcessor = new dataProcessor(this.gotData, this);
+	//dataProcessor.fetchData();
 
 }
 
@@ -54,10 +59,13 @@ function gotData(data) {
 
 	//this bit is the one I will keep - new bits
 
-	var mapProcessor = new MapProcessor();
+/*	var mapProcessor = new MapProcessor();
 
-	mapProcessor.getDataFromDB();
-	console.log(mapProcessor.markerList);
+	mapProcessor.getDataFromDB();*/
+
+	//gets data from db, cleans them, gets marker per item and adds to map
+	mapHandler.createMarkerList();
+	//console.log(mapProcessor.markerList);
 	//end of bit to keep
 }
 

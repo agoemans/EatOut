@@ -1,4 +1,6 @@
 function AsyncProcessor (){
+    //todo delete?
+
     this.onComplete;
 
     this.setCallback = function(cb, ctx){

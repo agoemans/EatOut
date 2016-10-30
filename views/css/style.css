@@ -17,7 +17,6 @@ li {
     margin: 0 auto;
     text-align: center;
     position: fixed;
-    text-shadow: 1px 1px 1px #aaa;
 }
 
 .container-fluid h1 {
@@ -53,7 +52,7 @@ li {
     width: 800px;
     margin: 0 auto;
     border-width: 10px;
-    border-style: inset;
+    border-style: solid;
     border-color: #8f6646;
     box-shadow: 3px 3px 5px #464202;
 }
