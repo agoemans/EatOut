@@ -1,9 +1,9 @@
 var mapHandler = (function () {
 	var customMarker = {
-		path:'M 5 5 L 15 5 L 10 15 z',
-		fillColor:'red',
+		path: 'M 5 5 L 15 5 L 10 15 z',
+		fillColor: 'red',
 		fillOpacity: 0.2,
-		scale:3,
+		scale: 3,
 		strokeColor: 'gold',
 		strokeWeight: 3
 	};
@@ -14,35 +14,36 @@ var mapHandler = (function () {
 		content: contentString
 	});
 
-	function createMarkers(i, that) {
+	function createMarkers(item, that) {
 		var self = that;
-		contentString = '<div id="content>' + '<div id="siteNotice>' + '</div>' +
-				'<h1 id="firstHeading" class="firstHeading">' + self.restaurantList[i].name + '</h1>' + '</div>';
+		var restaurant = item;
 
-		var markerPos = {lat: parseFloat(self.restaurantList[i].lat), lng: parseFloat(self.restaurantList[i].lng)};
+		updateContentString(restaurant);
+
+		var markerPos = {lat: parseFloat(restaurant.lat), lng: parseFloat(restaurant.lng)};
 		var marker = new google.maps.Marker({
 			position: markerPos,
 			map: map,
-			title: self.restaurantList[i].name,
+			title: restaurant.name,
 			icon: customMarker
 		});
 
-		addListenerPerMarker(i, marker);
+		addListenerPerMarker(restaurant, marker);
 
-		self.markerList.push({position: markerPos, restaurant: self.restaurantList[i]});
-		console.log("Added: " + self.restaurantList[i].name);
-		console.log("Full Obj " + self.restaurantList[i]);
+		self.markerList.push({position: markerPos, restaurant: restaurant});
+		console.log("Added: " + restaurant.name);
+		console.log("Full Obj " + restaurant);
 	}
 
-	function addListenerPerMarker(i, marker, that) {
-		var self = that;
-
-		google.maps.event.addListener(marker, 'click', (function (marker, i){
-			return function(){
-				infoWindow.setContent(self.restaurantList[i].name);
+	function addListenerPerMarker(item, marker, that) {
+		var restaurant = item;
+		google.maps.event.addListener(marker, 'click', (function (marker, restaurant, that) {
+			var self = that;
+			return function () {
+				infoWindow.setContent(restaurant.name);
 				infoWindow.open(map, marker);
 			}
-		})(marker, i));
+		})(marker, restaurant, that));
 	}
 
 	function addToMakerList(that) {
@@ -50,25 +51,43 @@ var mapHandler = (function () {
 		var perLoop = 7;
 		var loops = Math.ceil(self.restaurantList.length / perLoop);
 
-		for (var j = 0; j < loops; j ++)
-		{
-			setTimeout(function(loop){
-				return function() {
-					var startingIndex = loop*perLoop;
+		for (var j = 0; j < loops; j++) {
+			setTimeout(function (loop) {
+				return function () {
+					var startingIndex = loop * perLoop;
 
-					for (var i = startingIndex; i < Math.min(self.restaurantList.length, startingIndex + perLoop); i ++){
-						createMarkers(i, self);
+					for (var i = startingIndex; i < Math.min(self.restaurantList.length, startingIndex + perLoop); i++) {
+						createMarkers(self.restaurantList[i], self);
 					}
 				}
-			}(j), 1000*(j+1));
+			}(j), 1000 * (j + 1));
 
 		}
 	}
 
+	function updateContentString(item) {
+		var restaurant = item;
+		contentString = '<div id="content">' + '<div id="siteNotice">' + '</div>' +
+				'<h1 id="firstHeading" class="firstHeading">' + restaurant.name + '</h1>' +
+				'<h2 id="secondHeading" class="secondHeading">' + restaurant.street + '</h2>' +
+				'<h2 id="thirdHeading" class="thirdHeading">' + restaurant.zipcode + '</h2>' +
+				'<h3 id="fourthHeading" class="fourthHeading">' + restaurant.tel + '</h3>' +
+				'</div>';
+
+		console.log(contentString);
+	}
+
 	function cleanData(data, that) {
 		var self = that;
-		for (var i=0; i < data.length; i++) {
-			self.restaurantList.push({name: data[i].placename, lat:data[i].geoLat, lng:data[i].geoLng});
+		for (var i = 0; i < data.length; i++) {
+			self.restaurantList.push({
+				name: data[i].placename,
+				lat: data[i].geoLat,
+				lng: data[i].geoLng,
+				street: data[i].streetname,
+				zip: data[i].zipcode,
+				tel: data[i].telephone
+			});
 		}
 	}
 
