@@ -1,5 +1,3 @@
-
-
 var ajaxHelper = (function(){
     var xhttp;
     var url = 'http://localhost:8000/api';
@@ -43,7 +41,7 @@ var cleanAPIData = {
         ajaxHelper.getJson(callback, context);
     }
 
-}
+};
 
 function dataProcessor (cb, ctx) {
     this.onComplete = {
@@ -60,10 +58,6 @@ function dataProcessor (cb, ctx) {
     }
 
 };
-//
-//cleanAPIData.getDataFromServer(function(obj){
-//    console.log(obj);
-//}, this);
 
 
 

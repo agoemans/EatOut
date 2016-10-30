@@ -62,7 +62,8 @@
 
 
         $restaurantProcessor = new RestaurantProcessor();
-//        $restaurantProcessor->generateList();
+        //$restaurantProcessor->generateList();
+      //  $restaurantProcessor->updateSocialTables();
 
 
         return $app['twig']->render('index.twig', array(
@@ -77,7 +78,7 @@
         $output = '';
         $finalList = '';
 
-        for ($i=0; $i < 5; ++$i) {
+        for ($i=0; $i < 7; ++$i) {
             $output[] = $jsonObj[$i];
         }
 

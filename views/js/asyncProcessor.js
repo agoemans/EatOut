@@ -1,5 +1,3 @@
-//var httpHelper = require('httpHelper');
-
 function AsyncProcessor (){
     this.onComplete;
 
@@ -18,5 +16,3 @@ function AsyncProcessor (){
         httpHelper.getJson(this.processData,this)
     }
 };
-
-//module.exports = AsyncProcessor;

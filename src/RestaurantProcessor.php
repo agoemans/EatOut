@@ -38,6 +38,25 @@ class RestaurantProcessor
         return $restaurantList;
     }
 
+    public function updateSocialTables()
+    {
+        $rawData = $this->getRawJSONData();
+        $restaurantList = array();
+        $queryConnection = new QueryProcesor();
+
+        for ($i=0; $i < count($rawData["results"]); ++$i) {
+            $restaurant = Restaurant::fromApiData($rawData["results"][$i]);
+//            print_r($rawData);
+            $queryConnection->insertSocialMediaData($restaurant);
+
+            $restaurantList[] = $restaurant;
+            //var_dump($restaurantList);
+        }
+
+        return $restaurantList;
+    }
+
+
     public function readFromDatabase()
     {
         $queryConnection = new QueryProcesor();
@@ -47,7 +66,7 @@ class RestaurantProcessor
 //        return $queryConnection->selectResults();
 //making this 5 for testing todo -- change for google maps limitation
 //        for ($i=0; $i < count($results); ++$i) {
-        for ($i=0; $i < 5; ++$i) {
+        for ($i=0; $i < 7; ++$i) {
                 $restaurant = Restaurant::fromDatabaseData($results[$i]);
 
                 $restaurantList[] = $restaurant;

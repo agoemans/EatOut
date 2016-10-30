@@ -10,22 +10,52 @@ li {
     list-style: none;
 }
 
-.container {
-    max-width:1400px;
+.container-fluid {
+    /*min-width:800px;*/
+    color: #487800;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    position: fixed;
+    text-shadow: 1px 1px 1px #aaa;
 }
 
-.container h3 {
-    color: #DC143C;
+.container-fluid h1 {
+    /*padding-bottom: 30px;*/
+    vertical-align: middle;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 35px;
+}
+
+.container-fluid h2 {
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 20px;
+}
+
+.container-fluid h3 {
+    font-family: 'Droid Serif', serif;
+    font-size: 30px;
     margin-top:0px;
 }
 
-.container h1 {
+.container-fluid li h3 small {
     color: #DEB887;
-    padding-bottom: 30px;
 }
 
-.container li h3 small {
-    color: #DEB887;
+.container-fluid h4 {
+    padding-top:10px;
+    line-height: 1.5;
+}
+
+
+#map-canvas {
+    height: 480px;
+    width: 800px;
+    margin: 0 auto;
+    border-width: 10px;
+    border-style: inset;
+    border-color: #8f6646;
+    box-shadow: 3px 3px 5px #464202;
 }
 
 .restaurant {
@@ -42,13 +72,4 @@ li {
     box-shadow: #ccc 2px 2px 5px;
 }
 
-.container h4 {
-    padding-top:10px;
-    line-height: 1.5;
-}
-
-#map-canvas {
-    height: 400px;
-    width: 600px;
-}
 

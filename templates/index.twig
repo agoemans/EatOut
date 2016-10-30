@@ -6,17 +6,19 @@
         {% block stylesheets %}
 
                 {#<link rel="stylesheet" href="{{ asset('/../views/css/style.css') }}" media="all" />#}
-                {#<link rel="stylesheet" href="{{ bootstrapPath }}" media="all" />#}
 
-                    <link rel="stylesheet" href="{{'/../views/assets/bootstrap.css'}}" media="all" />
                     <link rel="stylesheet" href="{{ asset('/../views/css/style.css') }}" media="all" />
+                    <link rel="https://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet" />
+                    <link rel="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" />
 
 
         {% endblock %}
     </head>
     <body>
-        <div class="container">
-            <h1>Vegetarian restaurants in Amsterdam</h1>
+        <div class="container-fluid">
+            <h1 class = "main-title">Vegetarian Restaurants</h1>
+            <h2 class = "mini-title">in</h2>
+            <h3>Amsterdam</h3>
             <div id="map-canvas">test</div>
             <ul id="finalList">
 
@@ -37,7 +39,8 @@
                 {% endfor %}
             </ul>
         </div>
-        <script src="https://maps.googleapis.com/maps/api/js?key={{ apiKey }}"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key={{ apiKey }}"></script>
+        <script src="{{ asset('/../views/js/global.js') }}"></script>
         <script src="{{ asset('/../views/js/jsonprocessor.js') }}"></script>
         <script src="{{ asset('/../views/js/helper.js') }}"></script>
         <script src="{{ asset('/../views/js/map.js') }}"></script>

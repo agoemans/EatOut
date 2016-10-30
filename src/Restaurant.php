@@ -16,6 +16,10 @@ class Restaurant
     public $telephone;
     public $mobile;
     public $numberofRestaurants;
+    public $rating;
+    public $website;
+    public $facebook;
+    public $twitter;
 
     private function __construct()
     {
@@ -41,6 +45,10 @@ class Restaurant
         $restaurant->mobile = $result["mobile"];
         $restaurant->geoLat = $result["geolocation"]["latitude"];
         $restaurant->geoLng = $result["geolocation"]["longitude"];
+        $restaurant->rating = $result["rating"];
+        $restaurant->facebook = $result["facebook_url"];
+        $restaurant->website = $result["website_url"];
+        $restaurant->twitter = $result["twitter"];
 
         return $restaurant;
     }
@@ -58,6 +66,10 @@ class Restaurant
         $restaurant->mobile = $result["mobile"];
         $restaurant->geoLat = $result["lat"];
         $restaurant->geoLng = $result["lng"];
+        $restaurant->rating = $result["rating"];        
+        $restaurant->facebook = $result["facebook"];
+        $restaurant->website = $result["website"];
+        $restaurant->twitter = $result["twitter"];
 
         return $restaurant;
     }

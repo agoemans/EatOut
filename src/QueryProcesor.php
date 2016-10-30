@@ -63,7 +63,9 @@ class QueryProcesor
     {
         $this->insertAddress($restaurant);
         $this->insertPhoneInfo($restaurant);
+        $this->insertRating($restaurant);
         $this->insertCategoryInfo($restaurant);
+       // $this->insertSocialMediaData($restaurant);
     }
 
     public function insertAddress($restaurant)
@@ -99,7 +101,41 @@ class QueryProcesor
         }
 
         $mysqli->close();
+    }
 
+    public function insertRating($restaurant)
+    {
+        $mysqli = new \mysqli($this->dbhost, $this->dbuser, $this->dbpass);
+
+        $query = "Insert into EatOutDB.rating (restaurantid, rating) VALUE ($restaurant->placeid, $restaurant->rating)";
+
+
+        if ($mysqli->query($query) === true) {
+            echo "Record created successfully";
+        } else {
+            var_dump($mysqli->error);
+        }
+
+        $mysqli->close();
+    }
+
+    public function insertSocialMediaData($restaurant)
+    {
+        $mysqli = new \mysqli($this->dbhost, $this->dbuser, $this->dbpass);
+
+        $escFacebook = $mysqli->real_escape_string(urlencode($restaurant->facebook));
+        $escWebsite = $mysqli->real_escape_string(urlencode($restaurant->website));
+
+        $query = "Insert into EatOutDB.social (restaurantid, twitter, facebook, website) VALUE ($restaurant->placeid, '$restaurant->twitter', '$escFacebook', '$escWebsite')";
+
+
+        if ($mysqli->query($query) === true) {
+            echo "Record created successfully";
+        } else {
+            var_dump($mysqli->error);
+        }
+
+        $mysqli->close();
     }
 
     public function insertCategoryInfo($restaurant)
