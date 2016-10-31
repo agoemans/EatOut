@@ -19,14 +19,18 @@ li {
     position: fixed;
 }
 
-.container-fluid h1 {
-    /*padding-bottom: 30px;*/
+.container-fluid .main-title {
+    margin-top: 10px;
+    margin-bottom: 10px;
     vertical-align: middle;
-    font-family: 'Shadows Into Light', cursive;
-    font-size: 35px;
+    font-family: 'Lobster', cursive;
+    font-size: 60px;
+
 }
 
-.container-fluid h2 {
+.container-fluid .mini-title {
+    padding-top: 10px;
+    padding-bottom: 30px;
     font-family: 'Shadows Into Light', cursive;
     font-size: 20px;
 }
@@ -59,7 +63,6 @@ li {
 
 .restaurant {
     /*background-color: #00CC00;*/
-
     border-color: #DC143C;
     border-width: 2px;
     width: 300px;
@@ -71,4 +74,28 @@ li {
     box-shadow: #ccc 2px 2px 5px;
 }
 
+#content {
+    color: #c15e23;
+}
+
+#content  .firstHeading {
+    border-bottom-width: 5px;
+    border-bottom: solid;
+}
+
+.firstHeading {
+    text-align: left;
+    font-family: 'Droid Serif', serif;
+    font-size: 25px;
+    font-variant-caps: small-caps;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+
+.secondHeading, .thirdHeading, .fourthHeading  {
+    text-align: left;
+    font-family: 'Droid Serif', serif;
+    font-size: 14px;
+    font-variant: normal;
+}
 

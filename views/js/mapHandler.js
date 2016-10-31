@@ -77,10 +77,10 @@ function MapHandler() {
 	var createContentString = function(item) {
 		var restaurant = item;
 		contentString = '<div id="content">' + '<div id="siteNotice">' + '</div>' +
-				'<h1 id="firstHeading" class="firstHeading">' + restaurant.name + '</h1>' +
+				'<h1 class="firstHeading">' + restaurant.name + '</h1>' +
 				'<h2 id="secondHeading" class="secondHeading">' + restaurant.street + '</h2>' +
 				'<h2 id="thirdHeading" class="thirdHeading">' + restaurant.zip + '</h2>' +
-				'<h3 id="fourthHeading" class="fourthHeading">' + restaurant.tel + '</h3>' +
+				'<h2 id="fourthHeading" class="fourthHeading">' + restaurant.tel + '</h2>' +
 				'</div>';
 
 		return contentString;

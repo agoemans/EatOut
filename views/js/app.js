@@ -4,15 +4,15 @@ var app = (function () {
 			center: {lat: 52.3837955, lng: 4.9130078},
 			zoom: 13,
 			mapTypeControlOptions: {
-				mapTypeIds: ['roadmap', 'styled_map']
+				mapTypeIds: ['map']
 			},
-			mapTypeIds: 'styled_map'
+			mapTypeIds: 'map'
 		});
 
 		createStyledMap();
 
-		map.mapTypes.set('styled_map', styledMapType);
-		map.setMapTypeId('styled_map');
+		map.mapTypes.set('map', styledMapType);
+		map.setMapTypeId('map');
 
 		google.maps.event.addListener(map, 'idle', showMarkers);
 	}
@@ -20,7 +20,7 @@ var app = (function () {
 	function createStyledMap() {
 		styledMapType = new google.maps.StyledMapType(
 			styledMapTypeData.styleElement,
-			{name: 'styled_map'});
+			{name: 'map'});
 	}
 
 	function showMarkers() {
