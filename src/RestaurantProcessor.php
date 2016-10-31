@@ -66,11 +66,11 @@ class RestaurantProcessor
 //        return $queryConnection->selectResults();
 //making this 5 for testing todo -- change for google maps limitation
 //        for ($i=0; $i < count($results); ++$i) {
-        for ($i=0; $i < 7; ++$i) {
+        for ($i=0; $i < count($results); ++$i) {
                 $restaurant = Restaurant::fromDatabaseData($results[$i]);
 
                 $restaurantList[] = $restaurant;
-                //var_dump($restaurantList);
+               // var_dump($restaurantList);
         }
 
 

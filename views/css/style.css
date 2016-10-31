@@ -76,6 +76,7 @@ li {
 
 #content {
     color: #c15e23;
+    padding: 5px 30px 5px 5px;
 }
 
 #content  .firstHeading {
@@ -97,5 +98,20 @@ li {
     font-family: 'Droid Serif', serif;
     font-size: 14px;
     font-variant: normal;
+}
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 5px;
+    background-color: #efefef;
+    text-align: center;
+    color: #c15e23;
+}
+
+.footer p {
+    color: #c15e23;
 }
 

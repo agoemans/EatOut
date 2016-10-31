@@ -69,7 +69,8 @@
         return $app['twig']->render('index.twig', array(
             'name' => 'Restaurants In Amsterdam',
             'finalList' => $restaurantProcessor->readFromDatabase(),
-            'apiKey' => $apiKey
+            'apiKey' => $apiKey,
+            'EetNuLink' => 'https://docs.eet.nu/'
 
         ));
     });
@@ -78,8 +79,11 @@
         $output = '';
         $finalList = '';
 
-        for ($i=0; $i < 7; ++$i) {
+       // var_dump('hi');
+       // var_dump(count($jsonObj));
+        for ($i=0; $i < count($jsonObj); ++$i) {
             $output[] = $jsonObj[$i];
+
         }
 
         return json_encode($output);

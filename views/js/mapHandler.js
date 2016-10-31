@@ -4,6 +4,8 @@ function MapHandler() {
 
 	this.map = null;
 
+	this.numberOfRestaurants = 0;
+
 	var customMarker = {
 		path: 'M 5 5 L 15 5 L 10 15 z',
 		fillColor: 'red',
@@ -28,12 +30,11 @@ function MapHandler() {
 		var marker = new google.maps.Marker({
 			position: markerPos,
 			map: map,
-			title: restaurant.name,
-			icon: customMarker
+			title: restaurant.name
 		});
 
 		return marker;
-	}
+	};
 
 	// private
 	var addListenerPerMarker = function(restaurant, marker) {
@@ -44,11 +45,11 @@ function MapHandler() {
 				infoWindow.open(map, marker);
 			}
 		})(marker, restaurant));
-	}
+	};
 
 	this.addToMarkerList = function() {
 
-		var perLoop = 7;
+		var perLoop = this.numberOfRestaurants;
 
 		var loops = Math.ceil(this.restaurantList.length / perLoop);
 
@@ -84,7 +85,7 @@ function MapHandler() {
 				'</div>';
 
 		return contentString;
-	}
+	};
 
 	this.addToRestaurantList = function(data) {
 
@@ -98,22 +99,26 @@ function MapHandler() {
 				tel: data[i].telephone
 			});
 		}
-	}
+	};
 
 	this.storeMarkerInfo = function(data) {
 
+		console.log('data');
+		console.log(data);
 		//this get list of restaurants, cleans them up, adds to restaurant list
 		this.addToRestaurantList(data);
 
+		this.numberOfRestaurants = data.length;
+
 		//creates markers based on geo location per restaurant
 		this.addToMarkerList();
-	}
+	};
 
 
 	this.createMarkerList = function () {
 		this.restaurantList = [];
 		ajaxHelper.fetchData(this.storeMarkerInfo, this)
-	}
+	};
 }
 
 

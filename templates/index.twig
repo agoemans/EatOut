@@ -23,24 +23,10 @@
             <div class="mini-title">A list of vegetarian restaurants in Amsterdam Centrum!
             </div>
             <div id="map-canvas">test</div>
-            <ul id="finalList">
-
-                {% for item in finalList %}
-                    <li class="restaurant"><h3 ><strong>{{ item.placename|striptags|title }}</strong></h3>
-
-                        <h4>
-                            {{ item.streetname }}
-                        </h4>
-
-
-                        <h4>
-                            {{ item.zipcode }}
-                        </h4>
-                    </li>
-
-
-                {% endfor %}
-            </ul>
+        </div>
+        <div class ="footer">
+            <p>Created using the data from <a href="{{ EetNuLink }}"> EetNu API </a>
+            </p>
         </div>
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key={{ apiKey }}"></script>
         <script src="{{ asset('/../views/js/global.js') }}"></script>
